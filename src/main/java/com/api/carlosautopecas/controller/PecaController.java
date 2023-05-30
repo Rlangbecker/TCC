@@ -40,8 +40,8 @@ public class PecaController {
         return pecaService.findById(codigPeca);
     }
 
-//    @GetMapping("/referencia/{referencia}")
-//    public List<PecaOutput> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
-//        return pecaService.findByReferencia(referencia);
-//    }
+    @GetMapping("/referencia/{referencia}")
+    public List<PecaOutput> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
+        return pecaService.findByReferencia(referencia);
+    }
 }

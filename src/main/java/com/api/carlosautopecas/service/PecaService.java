@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -40,23 +41,24 @@ public class PecaService {
 //
 //    }
 
-//    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
-//        EstoqueEntity estoqueOutput = estoqueService.findByReferencia(referencia);
-//        PecaEntity pecaEntity = pecaRepository.findPecaEntityByEstoqueEntity(estoqueOutput);
-//        PecaOutput pecaOutput = PecaOutput.builder()
-//                .descricao(pecaEntity.getDescricao())
-//                .codigoPeca(pecaEntity.getCodigoPeca())
-//                .precoVenda(pecaEntity.getPrecoVenda())
-//                .precoCusto(pecaEntity.getPrecoCusto())
-//                .ultimoFornecedor(fornecedorService.findById(pecaEntity.getUltimoFornecedor()))
-//                .dataCadastro(pecaEntity.getDataCadastro())
-//                .ultimaVenda(pecaEntity.getUltimaVenda())
-//                .grupo(grupoService.findById(pecaEntity.getIdGrupo()).getNomeGrupo())
-//                .build();
-//        List<PecaOutput> list = new ArrayList<>();
-//        list.add(pecaOutput);
-//        return list;
-//    }
+    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
+        EstoqueEntity estoqueOutput = estoqueService.findByReferencia(referencia);
+        Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOutput.getIdIdentificador().longValue());
+        PecaOutput pecaOutput = PecaOutput.builder()
+                .descricao(pecaEntity.get().getDescricao())
+                .codigoPeca(pecaEntity.get().getCodigoPeca())
+                .precoVenda(pecaEntity.get().getPrecoVenda())
+                .precoCusto(pecaEntity.get().getPrecoCusto())
+                .ultimoFornecedor(fornecedorService.findById(pecaEntity.get().getUltimoFornecedor()))
+                .dataCadastro(pecaEntity.get().getDataCadastro())
+                .ultimaVenda(pecaEntity.get().getUltimaVenda())
+                .grupo(grupoService.findById(pecaEntity.get().getIdGrupo()).getNomeGrupo())
+                .estoqueEntity(estoqueOutput)
+                .build();
+        List<PecaOutput> list = new ArrayList<>();
+        list.add(pecaOutput);
+        return list;
+    }
 
 
     public PageOutput<PecaOutput> listaAllPaginado(Integer pagina,
