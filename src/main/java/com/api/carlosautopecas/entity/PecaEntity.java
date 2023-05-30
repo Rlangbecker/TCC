@@ -39,7 +39,7 @@ public class PecaEntity {
 //            joinColumns = @JoinColumn(name = "ID_FORNEC"),
 //            inverseJoinColumns = @JoinColumn(name = "ID_IDENTIFICADOR"))
 //    private Set<EstoqueEntity> estoqueEntity;
-
+//
 //    public Set<EstoqueEntity> getEstoqueEntity() {
 //        return estoqueEntity;
 //    }

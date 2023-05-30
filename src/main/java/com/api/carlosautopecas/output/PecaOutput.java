@@ -1,5 +1,6 @@
 package com.api.carlosautopecas.output;
 
+import com.api.carlosautopecas.entity.EstoqueEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -25,6 +26,8 @@ public class PecaOutput {
     private LocalDate ultimaVenda;
 
     private FornecedorOutput ultimoFornecedor;
+
+    private EstoqueEntity estoqueEntity;
 
 
 }

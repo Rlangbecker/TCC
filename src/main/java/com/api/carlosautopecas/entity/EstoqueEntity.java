@@ -12,7 +12,7 @@ public class EstoqueEntity {
     @Column(name = "ID_IDENTIFICADOR")
     private Integer idIdentificador;
 
-    @Column(name = "DESC_COMPL")
+    @Column(name = "DESC_CMPL")
     private String casaPeca;
 
     @Column(name = "REFERENCIA")
@@ -32,7 +32,7 @@ public class EstoqueEntity {
 //            joinColumns = @JoinColumn(name = "ID_IDENTIFICADOR"),
 //            inverseJoinColumns = @JoinColumn(name = "ID_ESTOQUE"))
 //    private Set<PecaEntity> pecaEntity;
-
+//
 //    public Set<PecaEntity> getPecaEntity() {
 //        return pecaEntity;
 //    }
