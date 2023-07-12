@@ -6,6 +6,7 @@ import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,12 @@ import java.util.List;
 public class PecaController {
 
     private final PecaService pecaService;
+
+//    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+//
+//    public void lalala(){
+//        namedParameterJdbcTemplate.query("SELECT * FROM ESTOQUE",);
+//    }
 
     @GetMapping("/descricao/{descricao}")
     public PageOutput<PecaOutput> listByName(@RequestParam(defaultValue = "0", required = false) Integer pagina,
