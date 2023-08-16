@@ -18,21 +18,21 @@ public class EstoqueService {
 
     private final EstoqueRepository estoqueRepository;
 
-//    public List<EstoqueOutput> findByReferencia(String referencia) {
-//        return estoqueRepository.findByReferenciaPeca(referencia).stream()
-//                .map(estoqueEntity -> {
-//                    EstoqueOutput estoqueOutput = EstoqueOutput.builder()
-//                            .idIdentificador(estoqueEntity.getIdIdentificador())
-//                            .referenciaPeca(estoqueEntity.getReferenciaPeca())
-//                            .ncm(estoqueEntity.getNcm())
-//                            .casaPeca(estoqueEntity.getCasaPeca())
-//                            .quantidadePeca(estoqueEntity.getQuantidadePeca())
-//                            .csosn(estoqueEntity.getCsosn())
-//                            .build();
-//                    return estoqueOutput;
-//                })
-//                .collect(Collectors.toList());
-//    }
+    public List<EstoqueOutput> findByReferencia(String referencia) {
+        return estoqueRepository.findByReferenciaPeca(referencia).stream()
+                .map(estoqueEntity -> {
+                    EstoqueOutput estoqueOutput = EstoqueOutput.builder()
+                            .idIdentificador(estoqueEntity.getIdIdentificador())
+                            .referenciaPeca(estoqueEntity.getReferenciaPeca())
+                            .ncm(estoqueEntity.getNcm())
+                            .casaPeca(estoqueEntity.getCasaPeca())
+                            .quantidadePeca(estoqueEntity.getQuantidadePeca())
+                            .csosn(estoqueEntity.getCsosn())
+                            .build();
+                    return estoqueOutput;
+                })
+                .collect(Collectors.toList());
+    }
 
 //    public EstoqueOutput findByReferencia(String referencia){
 //        EstoqueOutput estoqueOutput = objectMapper.convertValue(estoqueRepository.findByReferenciaPeca(referencia), EstoqueOutput.class);
@@ -43,8 +43,8 @@ public class EstoqueService {
         return estoqueRepository.findById(id).orElseThrow(() -> new Exception("erro"));
     }
 
-    public EstoqueEntity findByReferencia(String referencia) {
-        EstoqueEntity estoqueOutput = estoqueRepository.findByReferenciaPeca(referencia);
-        return estoqueOutput;
-    }
+//    public EstoqueEntity findByReferencia(String referencia) {
+//        EstoqueEntity estoqueOutput = estoqueRepository.findByReferenciaPeca(referencia);
+//        return estoqueOutput;
+//    }
 }

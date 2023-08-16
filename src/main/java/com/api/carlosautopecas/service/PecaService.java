@@ -3,11 +3,9 @@ package com.api.carlosautopecas.service;
 
 import com.api.carlosautopecas.entity.EstoqueEntity;
 import com.api.carlosautopecas.entity.PecaEntity;
-import com.api.carlosautopecas.output.FornecedorOutput;
-import com.api.carlosautopecas.output.GrupoOutput;
-import com.api.carlosautopecas.output.PageOutput;
-import com.api.carlosautopecas.output.PecaOutput;
+import com.api.carlosautopecas.output.*;
 import com.api.carlosautopecas.repository.PecaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +30,8 @@ public class PecaService {
 
     private final FornecedorService fornecedorService;
 
+    private final ObjectMapper objectMapper;
+
     private static final int DESCENDING = 1;
 
 //        public PecaEntity findById(Long codigoPeca) {
@@ -42,21 +42,30 @@ public class PecaService {
 //    }
 
     public List<PecaOutput> findByReferencia(String referencia) throws Exception {
-        EstoqueEntity estoqueOutput = estoqueService.findByReferencia(referencia);
-        Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOutput.getIdIdentificador().longValue());
-        PecaOutput pecaOutput = PecaOutput.builder()
-                .descricao(pecaEntity.get().getDescricao())
-                .codigoPeca(pecaEntity.get().getCodigoPeca())
-                .precoVenda(pecaEntity.get().getPrecoVenda())
-                .precoCusto(pecaEntity.get().getPrecoCusto())
-                .ultimoFornecedor(fornecedorService.findById(pecaEntity.get().getUltimoFornecedor()))
-                .dataCadastro(pecaEntity.get().getDataCadastro())
-                .ultimaVenda(pecaEntity.get().getUltimaVenda())
-                .grupo(grupoService.findById(pecaEntity.get().getIdGrupo()).getNomeGrupo())
-                .estoqueEntity(estoqueOutput)
-                .build();
+        List<EstoqueOutput> estoqueOutput = estoqueService.findByReferencia(referencia);
         List<PecaOutput> list = new ArrayList<>();
-        list.add(pecaOutput);
+        estoqueOutput.stream()
+                .forEach(estoqueOut -> {
+                    Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOut.getIdIdentificador().longValue());
+                    try {
+                        PecaOutput pecaOutput = PecaOutput.builder()
+                                .descricao(pecaEntity.get().getDescricao())
+                                .codigoPeca(pecaEntity.get().getCodigoPeca())
+                                .precoVenda(pecaEntity.get().getPrecoVenda())
+                                .precoCusto(pecaEntity.get().getPrecoCusto())
+                                .ultimoFornecedor(fornecedorService.findById(pecaEntity.get().getUltimoFornecedor()))
+                                .dataCadastro(pecaEntity.get().getDataCadastro())
+                                .ultimaVenda(pecaEntity.get().getUltimaVenda())
+                                .grupo(grupoService.findById(pecaEntity.get().getIdGrupo()).getNomeGrupo())
+                                .estoqueEntity(objectMapper.convertValue(estoqueOutput,EstoqueEntity.class))
+                                .build();
+                        list.add(pecaOutput);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+
         return list;
     }
 

@@ -1,12 +1,10 @@
 package com.api.carlosautopecas.controller;
 
 
-import com.api.carlosautopecas.entity.PecaEntity;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
