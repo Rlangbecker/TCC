@@ -16,12 +16,6 @@ public class PecaController {
 
     private final PecaService pecaService;
 
-//    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-//
-//    public void lalala(){
-//        namedParameterJdbcTemplate.query("SELECT * FROM ESTOQUE",);
-//    }
-
     @GetMapping("/descricao/{descricao}")
     public PageOutput<PecaOutput> listByName(@RequestParam(defaultValue = "0", required = false) Integer pagina,
                                              @RequestParam(defaultValue = "20", required = false) Integer tamanho,

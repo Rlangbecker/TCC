@@ -1,6 +1,5 @@
 package com.api.carlosautopecas.controller;
 
-import com.api.carlosautopecas.entity.PecaEntity;
 import com.api.carlosautopecas.output.FornecedorOutput;
 import com.api.carlosautopecas.service.FornecedorService;
 import lombok.RequiredArgsConstructor;
