@@ -18,15 +18,6 @@ public class FornecedorEntity {
     @Column(name = "CNPJ")
     private String cnpj;
 
-//    @JsonIgnoreProperties
-//    @OneToOne
-//    @JoinColumn(name = "ID_ESTOQUE",referencedColumnName = "ID_ESTOQUE")
-//    private PecaEntity peca;
-//
-//    public PecaEntity getPeca() {
-//        return peca;
-//    }
-
     public Integer getIdFornecedor() {
         return idFornecedor;
     }
@@ -43,7 +34,4 @@ public class FornecedorEntity {
         return cnpj;
     }
 
-//    public Set<PecaEntity> getPecas() {
-//        return pecas;
-//    }
 }

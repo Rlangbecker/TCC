@@ -32,16 +32,6 @@ public class PecaEntity {
 
     @Column(name = "ULT_FORNEC")
     private Integer ultimoFornecedor;
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    @JoinTable(name = "TB_EST_FORNECEDOR",
-//            joinColumns = @JoinColumn(name = "ID_FORNEC"),
-//            inverseJoinColumns = @JoinColumn(name = "ID_IDENTIFICADOR"))
-//    private Set<EstoqueEntity> estoqueEntity;
-//
-//    public Set<EstoqueEntity> getEstoqueEntity() {
-//        return estoqueEntity;
-//    }
 
     public Long getCodigoPeca() {
         return codigoPeca;
