@@ -3,11 +3,8 @@ package com.api.carlosautopecas.service;
 import com.api.carlosautopecas.output.FornecedorOutput;
 import com.api.carlosautopecas.repository.FornecedorRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

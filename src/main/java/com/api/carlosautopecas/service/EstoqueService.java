@@ -1,14 +1,10 @@
 package com.api.carlosautopecas.service;
 
 import com.api.carlosautopecas.entity.EstoqueEntity;
-import com.api.carlosautopecas.output.EstoqueOutput;
 import com.api.carlosautopecas.repository.EstoqueRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

@@ -16,5 +16,4 @@ public class FornecedorOutput {
     private String cnpj;
 
 
-
 }

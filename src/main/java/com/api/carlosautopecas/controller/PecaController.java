@@ -1,7 +1,6 @@
 package com.api.carlosautopecas.controller;
 
 
-import com.api.carlosautopecas.entity.PecaEntity;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;

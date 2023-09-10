@@ -1,9 +1,8 @@
 package com.api.carlosautopecas.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity(name = "TB_EST_PRODUTO")
 public class EstoqueEntity {
