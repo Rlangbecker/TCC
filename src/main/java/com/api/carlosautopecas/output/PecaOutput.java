@@ -1,5 +1,6 @@
 package com.api.carlosautopecas.output;
 
+
 import com.api.carlosautopecas.entity.EstoqueEntity;
 import lombok.Builder;
 import lombok.Data;

@@ -1,15 +1,13 @@
 package com.api.carlosautopecas.controller;
 
 
-import com.api.carlosautopecas.entity.PecaEntity;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,12 +15,6 @@ import java.util.List;
 public class PecaController {
 
     private final PecaService pecaService;
-
-//    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-//
-//    public void lalala(){
-//        namedParameterJdbcTemplate.query("SELECT * FROM ESTOQUE",);
-//    }
 
     @GetMapping("/descricao/{descricao}")
     public PageOutput<PecaOutput> listByName(@RequestParam(defaultValue = "0", required = false) Integer pagina,
@@ -43,12 +35,12 @@ public class PecaController {
 
 
     @GetMapping("/codigo/{codigoPeca}")
-    public PecaOutput findById(@PathVariable("codigoPeca") Long codigPeca) throws Exception {
-        return pecaService.findById(codigPeca);
+    public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigPeca) throws Exception {
+        return new ResponseEntity<>(pecaService.findById(codigPeca), HttpStatus.OK);
     }
 
-    @GetMapping("/referencia/{referencia}")
-    public List<PecaOutput> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
-        return pecaService.findByReferencia(referencia);
-    }
+//    @GetMapping("/referencia/{referencia}")
+//    public List<PecaOutput> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
+//        return pecaService.findByReferencia(referencia);
+//    }
 }

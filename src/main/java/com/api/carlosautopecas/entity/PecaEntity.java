@@ -1,12 +1,11 @@
 package com.api.carlosautopecas.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity(name = "TB_ESTOQUE")
 public class PecaEntity {
@@ -33,16 +32,6 @@ public class PecaEntity {
 
     @Column(name = "ULT_FORNEC")
     private Integer ultimoFornecedor;
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    @JoinTable(name = "TB_EST_FORNECEDOR",
-//            joinColumns = @JoinColumn(name = "ID_FORNEC"),
-//            inverseJoinColumns = @JoinColumn(name = "ID_IDENTIFICADOR"))
-//    private Set<EstoqueEntity> estoqueEntity;
-//
-//    public Set<EstoqueEntity> getEstoqueEntity() {
-//        return estoqueEntity;
-//    }
 
     public Long getCodigoPeca() {
         return codigoPeca;

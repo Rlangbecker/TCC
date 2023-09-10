@@ -1,16 +1,15 @@
 package com.api.carlosautopecas.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity(name = "TB_EST_PRODUTO")
 public class EstoqueEntity {
 
     @Id
     @Column(name = "ID_IDENTIFICADOR")
-    private Integer idIdentificador;
+    private Long idIdentificador;
 
     @Column(name = "DESC_CMPL")
     private String casaPeca;
@@ -27,17 +26,8 @@ public class EstoqueEntity {
     @Column(name = "CSOSN")
     private String csosn;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "TB_EST_PROODUTO",
-//            joinColumns = @JoinColumn(name = "ID_IDENTIFICADOR"),
-//            inverseJoinColumns = @JoinColumn(name = "ID_ESTOQUE"))
-//    private Set<PecaEntity> pecaEntity;
-//
-//    public Set<PecaEntity> getPecaEntity() {
-//        return pecaEntity;
-//    }
 
-    public Integer getIdIdentificador() {
+    public Long getIdIdentificador() {
         return idIdentificador;
     }
 

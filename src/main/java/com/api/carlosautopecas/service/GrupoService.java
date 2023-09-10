@@ -1,13 +1,10 @@
 package com.api.carlosautopecas.service;
 
-import com.api.carlosautopecas.entity.GrupoEntity;
 import com.api.carlosautopecas.output.GrupoOutput;
 import com.api.carlosautopecas.repository.GrupoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

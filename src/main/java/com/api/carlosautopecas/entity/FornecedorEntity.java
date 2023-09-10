@@ -1,11 +1,8 @@
 package com.api.carlosautopecas.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
-import java.util.List;
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity(name = "TB_FORNECEDOR")
 public class FornecedorEntity {
@@ -20,15 +17,6 @@ public class FornecedorEntity {
 
     @Column(name = "CNPJ")
     private String cnpj;
-
-//    @JsonIgnoreProperties
-//    @OneToOne
-//    @JoinColumn(name = "ID_ESTOQUE",referencedColumnName = "ID_ESTOQUE")
-//    private PecaEntity peca;
-//
-//    public PecaEntity getPeca() {
-//        return peca;
-//    }
 
     public Integer getIdFornecedor() {
         return idFornecedor;
@@ -46,7 +34,4 @@ public class FornecedorEntity {
         return cnpj;
     }
 
-//    public Set<PecaEntity> getPecas() {
-//        return pecas;
-//    }
 }
