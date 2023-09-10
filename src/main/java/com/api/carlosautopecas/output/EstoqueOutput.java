@@ -1,12 +1,9 @@
 package com.api.carlosautopecas.output;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
+import lombok.Setter;
+@Setter
 @Builder
 @Getter
 public class EstoqueOutput {

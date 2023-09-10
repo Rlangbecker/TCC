@@ -5,8 +5,10 @@ import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,8 +37,8 @@ public class PecaController {
 
 
     @GetMapping("/codigo/{codigoPeca}")
-    public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigPeca) throws Exception {
-        return new ResponseEntity<>(pecaService.findById(codigPeca), HttpStatus.OK);
+    public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigoPeca) throws Exception {
+        return new ResponseEntity<>(pecaService.findById(codigoPeca), HttpStatus.OK);
     }
 
 //    @GetMapping("/referencia/{referencia}")

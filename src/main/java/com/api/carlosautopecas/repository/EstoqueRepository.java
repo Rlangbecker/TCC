@@ -9,5 +9,8 @@ public interface EstoqueRepository extends JpaRepository<EstoqueEntity,Long> {
 
     Optional<EstoqueEntity> findByReferenciaPeca(String referenciaPeca);
 
+//    EstoqueEntity findByReferenciaPeca(String referenciaPeca);
+
+
 //    Optional<PecaEntity> findByReferenciaPeca(String referenciaPeca);
 }

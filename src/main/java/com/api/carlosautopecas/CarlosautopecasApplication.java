@@ -8,10 +8,10 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class CarlosautopecasApplication {
 
-	public static void main(String[] args) {
-		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+    public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
 
-		SpringApplication.run(CarlosautopecasApplication.class, args);
-	}
+        SpringApplication.run(CarlosautopecasApplication.class, args);
+    }
 
 }

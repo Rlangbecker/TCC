@@ -3,12 +3,11 @@ package com.api.carlosautopecas.service;
 
 
 import com.api.carlosautopecas.entity.EstoqueEntity;
+
 import com.api.carlosautopecas.entity.PecaEntity;
-import com.api.carlosautopecas.output.FornecedorOutput;
-import com.api.carlosautopecas.output.GrupoOutput;
-import com.api.carlosautopecas.output.PageOutput;
-import com.api.carlosautopecas.output.PecaOutput;
+import com.api.carlosautopecas.output.*;
 import com.api.carlosautopecas.repository.PecaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,26 +29,10 @@ public class PecaService {
 
     private final FornecedorService fornecedorService;
 
+    private final ObjectMapper objectMapper;
+
     private static final int DESCENDING = 1;
 
-    public PecaOutput findById(Long codigoPeca) throws Exception {
-
-        PecaEntity peca = pecaRepository.findById(codigoPeca)
-                .orElseThrow(() -> new Exception("Peça não encontrada!"));
-
-        PecaOutput build = PecaOutput.builder()
-                .codigoPeca(peca.getCodigoPeca())
-                .grupo(grupoService.findById(peca.getIdGrupo()).getNomeGrupo())
-                .descricao(peca.getDescricao())
-                .precoVenda(peca.getPrecoVenda())
-                .precoCusto(peca.getPrecoCusto())
-                .dataCadastro(peca.getDataCadastro())
-                .ultimaVenda(peca.getUltimaVenda())
-                .ultimoFornecedor(fornecedorService.findById(peca.getUltimoFornecedor()))
-                .estoqueEntity(estoqueService.findById(peca.getCodigoPeca()))
-                .build();
-        return build;
-    }
 
 //    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
 //
@@ -124,9 +107,50 @@ public class PecaService {
 //    }
 
 
-    public PageOutput<PecaOutput> listaAllPaginado(Integer pagina,
-                                                   Integer tamanho,
-                                                   String sort,
+//    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
+//        EstoqueEntity estoqueOutput = estoqueService.findByReferencia(referencia);
+//        Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOutput.getIdIdentificador().longValue());
+//        PecaOutput pecaOutput = montarPecaOutput(pecaEntity.get());
+//        List<PecaOutput> list = new ArrayList<>();
+//        list.add(pecaOutput);
+//        return list;
+//    }
+
+
+
+//  CONSERTAR ESTE MÉTODO
+//    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
+//        EstoqueOutput estoqueOutput = estoqueService.findByReferencia(referencia);
+//
+//        List<PecaOutput> list = new ArrayList<>();
+//        estoqueOutput.stream()
+//                .forEach(estoqueOut -> {
+//                    Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOut.getIdIdentificador().longValue());
+//                    try {
+//                        PecaOutput pecaOutput = PecaOutput.builder()
+//                                .descricao(pecaEntity.get().getDescricao())
+//                                .codigoPeca(pecaEntity.get().getCodigoPeca())
+//                                .precoVenda(pecaEntity.get().getPrecoVenda())
+//                                .precoCusto(pecaEntity.get().getPrecoCusto())
+//                                .ultimoFornecedor(fornecedorService.findById(pecaEntity.get().getUltimoFornecedor()))
+//                                .dataCadastro(pecaEntity.get().getDataCadastro())
+//                                .ultimaVenda(pecaEntity.get().getUltimaVenda())
+//                                .grupo(grupoService.findById(pecaEntity.get().getIdGrupo()).getNomeGrupo())
+//                                .estoqueEntity(objectMapper.convertValue(estoqueOutput,EstoqueEntity.class))
+//                                .build();
+//                        list.add(pecaOutput);
+//                    } catch (Exception e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                });
+//
+//
+//        return list;
+//    }
+
+
+
+    public PageOutput<PecaOutput> listaAllPaginado(Integer pagina, Integer tamanho, String sort,
                                                    int order) throws Exception {
         Sort ordenacao = Sort.by(sort).ascending();
         if (order == DESCENDING) {
@@ -140,6 +164,7 @@ public class PecaService {
 
         List<PecaOutput> pecaOutputs = paginaPecaEntity.getContent().stream()
                 .map(pecaEntity -> {
+
                     FornecedorOutput fornecedorOutput = null;
                     GrupoOutput grupoOutput = null;
                     EstoqueEntity estoqueEntity = null;
@@ -161,6 +186,7 @@ public class PecaService {
                             .grupo(grupoOutput.getNomeGrupo())
                             .estoqueEntity(estoqueEntity)
                             .build();
+
                     return pecaOutput;
                 }).collect(Collectors.toList());
 
@@ -194,6 +220,7 @@ public class PecaService {
 
         List<PecaOutput> pecaOutputs = paginaPecaEntity.getContent().stream()
                 .map(pecaEntity -> {
+
                     FornecedorOutput fornecedorOutput = null;
                     GrupoOutput grupoOutput = null;
                     EstoqueEntity estoqueEntity = null;
@@ -219,6 +246,7 @@ public class PecaService {
 
 
 
+
     private PecaOutput getBuild(Long idEstoque, PecaEntity peca) throws Exception {
 
         return PecaOutput.builder()
@@ -232,6 +260,41 @@ public class PecaService {
                 .ultimoFornecedor(fornecedorService.findById(peca.getUltimoFornecedor()))
                 .estoqueEntity(estoqueService.findById(idEstoque))
                 .build();
+    }
+
+    public PecaOutput findById(Long codigoPeca) throws Exception {
+        int idEstoque = codigoPeca.intValue();
+        PecaEntity peca = pecaRepository.findById(codigoPeca)
+                .orElseThrow(() -> new Exception("Peça não encontrada!"));
+
+        PecaOutput pecaOutput = montarPecaOutput(peca);
+
+        return pecaOutput;
+    }
+
+    private PecaOutput montarPecaOutput(PecaEntity pecaEntity) {
+        FornecedorOutput fornecedorOutput = null;
+        GrupoOutput grupoOutput = null;
+        EstoqueEntity estoqueEntity = null;
+        try {
+            fornecedorOutput = fornecedorService.findById(pecaEntity.getUltimoFornecedor());
+            grupoOutput = grupoService.findById(pecaEntity.getIdGrupo());
+            estoqueEntity = estoqueService.findById(pecaEntity.getCodigoPeca());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        PecaOutput pecaOutput = PecaOutput.builder()
+                .descricao(pecaEntity.getDescricao())
+                .codigoPeca(pecaEntity.getCodigoPeca())
+                .precoVenda(pecaEntity.getPrecoVenda())
+                .precoCusto(pecaEntity.getPrecoCusto())
+                .ultimoFornecedor(fornecedorOutput)
+                .dataCadastro(pecaEntity.getDataCadastro())
+                .ultimaVenda(pecaEntity.getUltimaVenda())
+                .grupo(grupoOutput.getNomeGrupo())
+                .estoqueEntity(estoqueEntity)
+                .build();
+        return pecaOutput;
     }
 
 }
