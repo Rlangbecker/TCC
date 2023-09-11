@@ -6,25 +6,36 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
+import com.auth0.jwt.interfaces.Claim;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TokenService {
     @Value("${secret}")
     private String secret;
 
+    private static final String KEY_CARGOS = "CARGOS";
+
     public String generateToken(LoginEntity user){
         try{
+
+           List<String> keyCargos = new ArrayList<>();
+           keyCargos.add(user.getRole());
+
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("auth-api")
-//                    .withSubject(user.getLogin())
-//                    .withExpiresAt(genExpirationDate())
+                    .withClaim(KEY_CARGOS,keyCargos)
+                    .withClaim("Nome",user.getNome())
+                    .withSubject(user.getLogin())
+                    .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
             return token;
         } catch (JWTCreationException exception) {

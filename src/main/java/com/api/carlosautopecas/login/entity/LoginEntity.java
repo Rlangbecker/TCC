@@ -17,6 +17,8 @@ import java.util.Collections;
 @Document(collection = "Users")
 public class LoginEntity implements UserDetails {
 
+    private String nome;
+
     private String login;
 
     private String senha;

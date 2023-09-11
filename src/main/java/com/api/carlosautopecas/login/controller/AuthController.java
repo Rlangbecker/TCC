@@ -3,7 +3,9 @@ package com.api.carlosautopecas.login.controller;
 
 
 import com.api.carlosautopecas.login.entity.LoginEntity;
+import com.api.carlosautopecas.login.input.LoginCreateInput;
 import com.api.carlosautopecas.login.input.LoginInput;
+import com.api.carlosautopecas.login.output.LoginOutput;
 import com.api.carlosautopecas.login.security.TokenService;
 import com.api.carlosautopecas.login.service.LoginService;
 import jakarta.validation.Valid;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,20 +33,22 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody @Valid LoginInput loginInput){
-        var usernamePassword = new UsernamePasswordAuthenticationToken(loginInput.getLogin(), loginInput.getSenha());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
+        UsernamePasswordAuthenticationToken userAuthDTO= new UsernamePasswordAuthenticationToken(loginInput.getLogin(), loginInput.getSenha());
+        Authentication authentication  = authenticationManager.authenticate(userAuthDTO);
 
-        var token = tokenService.generateToken((LoginEntity) auth.getPrincipal());
+        Object principal = authentication.getPrincipal();
+        LoginEntity login = (LoginEntity) principal;
+        String token = tokenService.generateToken(login);
 
-        return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid LoginInput data){
-        if(loginService.findByLogin(data.getLogin()) != null) return ResponseEntity.badRequest().build();
+    public ResponseEntity<LoginOutput> register(@RequestBody @Valid LoginCreateInput data){
 
-        loginService.createUser(data);
 
-        return ResponseEntity.ok().build();
+        LoginOutput loginOutput = loginService.createUser(data);
+
+        return new ResponseEntity<>(loginOutput,HttpStatus.CREATED);
     }
 }

@@ -29,7 +29,7 @@ public class PecaController {
 
     @GetMapping
     public PageOutput<PecaOutput> list(@RequestParam(defaultValue = "0", required = false) Integer pagina,
-                                       @RequestParam(defaultValue = "20", required = false) Integer tamanho,
+                                       @RequestParam(defaultValue = "10", required = false) Integer tamanho,
                                        @RequestParam(defaultValue = "codigoPeca", required = false) String sort,
                                        @RequestParam(defaultValue = "0", required = false) Integer order) throws Exception {
         return pecaService.listaAllPaginado(pagina, tamanho, sort, order);
