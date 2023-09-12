@@ -1,8 +1,10 @@
 package com.api.carlosautopecas.login.entity;
 
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +18,9 @@ import java.util.Collections;
 @Builder
 @Document(collection = "Users")
 public class LoginEntity implements UserDetails {
+
+    @Id
+    private ObjectId id;
 
     private String nome;
 

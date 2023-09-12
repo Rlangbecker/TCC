@@ -1,15 +1,13 @@
-package com.api.carlosautopecas.login.output;
+package com.api.carlosautopecas.login.input;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class LoginOutput {
+public class UserOutput {
 
     private String nome;
-    private String login;
-
     private String role;
-
+    private String login;
 }
