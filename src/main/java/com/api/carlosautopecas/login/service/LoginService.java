@@ -24,12 +24,9 @@ public class LoginService {
                 .role(loginInput.getRole())
                 .build());
 
-        LoginEntity loginRetorno = loginRepository.save(login);
-
-
         return LoginOutput.builder()
-                .login(loginRetorno.getLogin())
-                .role(loginRetorno.getRole())
+                .login(login.getLogin())
+                .role(login.getRole())
                 .build();
     }
 
