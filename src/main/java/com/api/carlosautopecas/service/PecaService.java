@@ -14,7 +14,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -107,14 +109,14 @@ public class PecaService {
 //    }
 
 
-//    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
-//        EstoqueEntity estoqueOutput = estoqueService.findByReferencia(referencia);
-//        Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOutput.getIdIdentificador().longValue());
-//        PecaOutput pecaOutput = montarPecaOutput(pecaEntity.get());
-//        List<PecaOutput> list = new ArrayList<>();
-//        list.add(pecaOutput);
-//        return list;
-//    }
+    public List<PecaOutput> findByReferencia(String referencia) throws Exception {
+        EstoqueOutput estoqueOutput = estoqueService.findByReferencia(referencia);
+        Optional<PecaEntity> pecaEntity = pecaRepository.findById(estoqueOutput.getIdIdentificador().longValue());
+        PecaOutput pecaOutput = montarPecaOutput(pecaEntity.get());
+        List<PecaOutput> list = new ArrayList<>();
+        list.add(pecaOutput);
+        return list;
+    }
 
 
 

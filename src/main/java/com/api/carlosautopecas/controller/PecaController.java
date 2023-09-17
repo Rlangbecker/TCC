@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pecas")
@@ -41,8 +43,8 @@ public class PecaController {
         return new ResponseEntity<>(pecaService.findById(codigoPeca), HttpStatus.OK);
     }
 
-//    @GetMapping("/referencia/{referencia}")
-//    public List<PecaOutput> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
-//        return pecaService.findByReferencia(referencia);
-//    }
+    @GetMapping("/referencia/{referencia}")
+    public ResponseEntity<List<PecaOutput>> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
+        return new ResponseEntity<>(pecaService.findByReferencia(referencia),HttpStatus.OK);
+    }
 }
