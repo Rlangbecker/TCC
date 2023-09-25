@@ -40,11 +40,19 @@ public class PecaController {
 
     @GetMapping("/codigo/{codigoPeca}")
     public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigoPeca) throws Exception {
+        try{
         return new ResponseEntity<>(pecaService.findById(codigoPeca), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/referencia/{referencia}")
     public ResponseEntity<List<PecaOutput>> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
+        try{
         return new ResponseEntity<>(pecaService.findByReferencia(referencia),HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -6,6 +6,9 @@ import com.api.carlosautopecas.repository.EstoqueRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class EstoqueService {
@@ -17,21 +20,25 @@ public class EstoqueService {
         return estoqueRepository.findById(id).orElseThrow(() -> new Exception("erro"));
     }
 
+    public List<EstoqueOutput> findByReferencia(String referencia) throws Exception {
+        List<EstoqueOutput> listaEstoqueOutput = estoqueRepository.findByReferenciaPecaContainsIgnoreCase(referencia)
+                .stream()
+                .map(estoqueEntity -> {
 
-    public EstoqueOutput findByReferencia(String referencia) throws Exception {
-        EstoqueEntity estoque = estoqueRepository.findByReferenciaPeca(referencia)
-                .orElseThrow(() -> new Exception("erro"));
+                    EstoqueEntity estoque = estoqueEntity.get();
+                    EstoqueOutput estoqueOutput = EstoqueOutput.builder()
+                            .idIdentificador(estoque.getIdIdentificador())
+                            .referenciaPeca(estoque.getReferenciaPeca())
+                            .ncm(estoque.getNcm())
+                            .casaPeca(estoque.getCasaPeca())
+                            .quantidadePeca(estoque.getQuantidadePeca())
+                            .csosn(estoque.getCsosn())
+                            .build();
+                    return estoqueOutput;
+                }).collect(Collectors.toList());
 
 
-        EstoqueOutput estoqueOutput = EstoqueOutput.builder()
-                .idIdentificador(estoque.getIdIdentificador())
-                .referenciaPeca(estoque.getReferenciaPeca())
-                .ncm(estoque.getNcm())
-                .casaPeca(estoque.getCasaPeca())
-                .quantidadePeca(estoque.getQuantidadePeca())
-                .csosn(estoque.getCsosn())
-                .build();
-        return estoqueOutput;
+        return listaEstoqueOutput;
 
 
     }
