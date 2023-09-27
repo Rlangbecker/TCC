@@ -3,11 +3,17 @@ package com.api.carlosautopecas.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity(name = "TB_ESTOQUE")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PecaEntity {
 
     @Id

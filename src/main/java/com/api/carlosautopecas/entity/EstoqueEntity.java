@@ -3,8 +3,11 @@ package com.api.carlosautopecas.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Builder;
+import lombok.Setter;
 
 @Entity(name = "TB_EST_PRODUTO")
+@Setter
 public class EstoqueEntity {
 
     @Id
@@ -25,6 +28,10 @@ public class EstoqueEntity {
 
     @Column(name = "CSOSN")
     private String csosn;
+
+    public EstoqueEntity() {
+
+    }
 
 
     public Long getIdIdentificador() {

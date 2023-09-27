@@ -19,4 +19,19 @@ public class PageOutput<T> {
     private Integer tamanho;
     private List<T> elementos;
 
+    public int getTotalElements() {
+        return elementos.size();
+    }
+
+    public int getTotalPages() {
+        return quantidadePaginas;
+    }
+
+    public Integer getPage() {
+        return pagina;
+    }
+
+    public Integer getPageSize() {
+        return tamanho;
+    }
 }

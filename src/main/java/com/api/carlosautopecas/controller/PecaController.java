@@ -1,6 +1,7 @@
 package com.api.carlosautopecas.controller;
 
 
+import com.api.carlosautopecas.exception.RegraDeNegocioException;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
 import com.api.carlosautopecas.service.PecaService;
@@ -37,6 +38,15 @@ public class PecaController {
         return pecaService.listaAllPaginado(pagina, tamanho, sort, order);
     }
 
+    @GetMapping("/referencia/{referencia}")
+    public PageOutput<PecaOutput> listByReferencia(@RequestParam(defaultValue = "0", required = false) Integer pagina,
+                                       @RequestParam(defaultValue = "10", required = false) Integer tamanho,
+                                       @RequestParam(defaultValue = "idIdentificador", required = false) String sort,
+                                       @RequestParam(defaultValue = "0", required = false) Integer order,
+                                                   @PathVariable("referencia") String referencia) throws RegraDeNegocioException {
+        return pecaService.listaAllByReferencia(pagina, tamanho, sort, order,referencia);
+    }
+
 
     @GetMapping("/codigo/{codigoPeca}")
     public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigoPeca) throws Exception {
@@ -47,12 +57,12 @@ public class PecaController {
         }
     }
 
-    @GetMapping("/referencia/{referencia}")
-    public ResponseEntity<List<PecaOutput>> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
-        try{
-        return new ResponseEntity<>(pecaService.findByReferencia(referencia),HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @GetMapping("/referencia/{referencia}")
+//    public ResponseEntity<List<PecaOutput>> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
+//        try{
+//        return new ResponseEntity<>(pecaService.findByReferencia(referencia),HttpStatus.OK);
+//        } catch (Exception e){
+//            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+//        }
+//    }
 }
