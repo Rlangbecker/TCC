@@ -3,16 +3,25 @@ package com.api.carlosautopecas.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity(name = "TB_ESTOQUE")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PecaEntity {
 
     @Id
     @Column(name = "ID_ESTOQUE")
-    private Long idPeca;
+    private Long codigoPeca;
+
+    @Column(name = "ID_GRUPO")
+    private Integer idGrupo;
 
     @Column(name = "DESCRICAO")
     private String descricao;
@@ -27,47 +36,40 @@ public class PecaEntity {
     @Column(name = "ULT_VENDA")
     private LocalDate ultimaVenda;
 
-    public Long getIdPeca() {
-        return idPeca;
+    @Column(name = "ULT_FORNEC")
+    private Integer ultimoFornecedor;
+
+    public Long getCodigoPeca() {
+        return codigoPeca;
+    }
+
+    public Integer getIdGrupo() {
+        return idGrupo;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public BigDecimal getPrecoVenda() {
         return precoVenda;
-    }
-
-    public void setPrecoVenda(BigDecimal precoVenda) {
-        this.precoVenda = precoVenda;
     }
 
     public BigDecimal getPrecoCusto() {
         return precoCusto;
     }
 
-    public void setPrecoCusto(BigDecimal precoCusto) {
-        this.precoCusto = precoCusto;
-    }
-
     public LocalDate getDataCadastro() {
         return dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
     }
 
     public LocalDate getUltimaVenda() {
         return ultimaVenda;
     }
 
-    public void setUltimaVenda(LocalDate ultimaVenda) {
-        this.ultimaVenda = ultimaVenda;
+    public Integer getUltimoFornecedor() {
+        return ultimoFornecedor;
     }
+
+
 }
