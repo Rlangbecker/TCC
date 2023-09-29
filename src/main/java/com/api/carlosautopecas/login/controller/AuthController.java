@@ -1,6 +1,8 @@
 package com.api.carlosautopecas.login.controller;
 
 
+import com.api.carlosautopecas.exception.RegraDeNegocioException;
+import com.api.carlosautopecas.login.controller.interfaceDocumentacao.InterfaceDocumentacaoAuthController;
 import com.api.carlosautopecas.login.entity.LoginEntity;
 import com.api.carlosautopecas.login.input.LoginCreateInput;
 import com.api.carlosautopecas.login.input.LoginInput;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("auth")
-public class AuthController {
+public class AuthController implements InterfaceDocumentacaoAuthController {
 
     private final AuthenticationManager authenticationManager;
 
@@ -40,17 +42,20 @@ public class AuthController {
 
             return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Verifique suas credenciais!", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Verifique suas credenciais!", HttpStatus.BAD_REQUEST);
         }
 
 
     }
 
     @PostMapping("/register")
-    public ResponseEntity<LoginOutput> register(@RequestBody @Valid LoginCreateInput data) {
+    public ResponseEntity<LoginOutput> register(@RequestBody @Valid LoginCreateInput data) throws RegraDeNegocioException {
 
-        LoginOutput loginOutput = loginService.createUser(data);
-
-        return new ResponseEntity<>(loginOutput, HttpStatus.CREATED);
+        try {
+            LoginOutput loginOutput = loginService.createUser(data);
+            return new ResponseEntity<>(loginOutput, HttpStatus.CREATED);
+        } catch (RegraDeNegocioException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

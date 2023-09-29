@@ -1,6 +1,7 @@
 package com.api.carlosautopecas.controller;
 
 
+import com.api.carlosautopecas.controller.interfaceDocumentacao.InterfaceDocumentacaoPecaController;
 import com.api.carlosautopecas.exception.RegraDeNegocioException;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
@@ -17,16 +18,17 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pecas")
-public class PecaController {
+public class PecaController implements InterfaceDocumentacaoPecaController {
 
     private final PecaService pecaService;
+
 
     @GetMapping("/descricao/{descricao}")
     public PageOutput<PecaOutput> listByName(@RequestParam(defaultValue = "0", required = false) Integer pagina,
                                              @RequestParam(defaultValue = "20", required = false) Integer tamanho,
                                              @RequestParam(defaultValue = "codigoPeca", required = false) String sort,
                                              @RequestParam(defaultValue = "0", required = false) Integer order,
-                                             @PathVariable("descricao") String descricao) throws Exception {
+                                             @PathVariable("descricao") String descricao) throws RegraDeNegocioException {
         return pecaService.listaAllByDescricaoPaginado(pagina, tamanho, sort, order, descricao);
     }
 
@@ -34,7 +36,7 @@ public class PecaController {
     public PageOutput<PecaOutput> list(@RequestParam(defaultValue = "0", required = false) Integer pagina,
                                        @RequestParam(defaultValue = "10", required = false) Integer tamanho,
                                        @RequestParam(defaultValue = "codigoPeca", required = false) String sort,
-                                       @RequestParam(defaultValue = "0", required = false) Integer order) throws Exception {
+                                       @RequestParam(defaultValue = "0", required = false) Integer order) throws RegraDeNegocioException {
         return pecaService.listaAllPaginado(pagina, tamanho, sort, order);
     }
 
@@ -49,20 +51,11 @@ public class PecaController {
 
 
     @GetMapping("/codigo/{codigoPeca}")
-    public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigoPeca) throws Exception {
+    public ResponseEntity<PecaOutput> findById(@PathVariable("codigoPeca") Long codigoPeca) throws RegraDeNegocioException {
         try{
         return new ResponseEntity<>(pecaService.findById(codigoPeca), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @GetMapping("/referencia/{referencia}")
-//    public ResponseEntity<List<PecaOutput>> findByReferencia(@PathVariable("referencia") String referencia) throws Exception {
-//        try{
-//        return new ResponseEntity<>(pecaService.findByReferencia(referencia),HttpStatus.OK);
-//        } catch (Exception e){
-//            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
-//        }
-//    }
 }

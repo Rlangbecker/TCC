@@ -2,6 +2,7 @@ package com.api.carlosautopecas.factory;
 
 import com.api.carlosautopecas.entity.EstoqueEntity;
 import com.api.carlosautopecas.output.EstoqueOutput;
+import org.springframework.data.domain.Page;
 
 public class EstoqueFactory {
     public static EstoqueEntity getEstoqueEntity() {

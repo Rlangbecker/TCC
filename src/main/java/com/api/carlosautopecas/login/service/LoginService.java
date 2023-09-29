@@ -1,5 +1,6 @@
 package com.api.carlosautopecas.login.service;
 
+import com.api.carlosautopecas.exception.RegraDeNegocioException;
 import com.api.carlosautopecas.login.entity.LoginEntity;
 import com.api.carlosautopecas.login.input.LoginChangePassword;
 import com.api.carlosautopecas.login.input.LoginCreateInput;
@@ -22,7 +23,11 @@ public class LoginService {
     private final LoginRepository loginRepository;
 
 
-    public LoginOutput createUser(LoginCreateInput loginInput) {
+    public LoginOutput createUser(LoginCreateInput loginInput) throws RegraDeNegocioException {
+
+        if(loginInput==null){
+            throw new RegraDeNegocioException("Os dados precisam ser preenchidos!");
+        }
 
         LoginEntity login = loginRepository.save(LoginEntity.builder()
                 .login(loginInput.getLogin())

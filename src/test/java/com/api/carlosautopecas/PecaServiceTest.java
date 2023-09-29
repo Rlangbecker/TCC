@@ -1,5 +1,6 @@
 package com.api.carlosautopecas;
 
+import com.api.carlosautopecas.entity.EstoqueEntity;
 import com.api.carlosautopecas.entity.PecaEntity;
 import com.api.carlosautopecas.exception.RegraDeNegocioException;
 import com.api.carlosautopecas.factory.EstoqueFactory;
@@ -9,6 +10,7 @@ import com.api.carlosautopecas.factory.PecaFactory;
 import com.api.carlosautopecas.output.EstoqueOutput;
 import com.api.carlosautopecas.output.PageOutput;
 import com.api.carlosautopecas.output.PecaOutput;
+import com.api.carlosautopecas.repository.EstoqueRepository;
 import com.api.carlosautopecas.repository.PecaRepository;
 import com.api.carlosautopecas.service.EstoqueService;
 import com.api.carlosautopecas.service.FornecedorService;
@@ -46,6 +48,9 @@ public class PecaServiceTest {
 
     @Mock
     private PecaRepository pecaRepository;
+
+    @Mock
+    private EstoqueRepository estoqueRepository;
     @Mock
     private EstoqueService estoqueService;
     @Mock
@@ -253,6 +258,38 @@ public class PecaServiceTest {
         List<PecaOutput> listPeca = pecaService.findByReferencia("40307");
 
         assertEquals(listPeca.size(),listEstoqueOutput.size());
+    }
+
+    @Test
+    public void deveTestarListAllByReferenciaomSucesso() throws RegraDeNegocioException {
+
+        Integer pagina = 0;
+        Integer tamanho = 10;
+        String sort = "IdIdentificador";
+        int order = 1;
+        Sort ordenacao = Sort.by(sort).descending();
+        EstoqueEntity estoqueEntity = EstoqueFactory.getEstoqueEntity();
+
+        PageImpl<EstoqueEntity> estoqueEntities = new PageImpl<>(List.of(estoqueEntity),
+                PageRequest.of(pagina, tamanho, ordenacao), 0);
+
+//        when(estoqueRepository.findByReferenciaPecaContainsIgnoreCase(any(), any(Pageable.class)))
+//                .thenReturn(estoqueEntities);
+
+        when(estoqueService.retornarPaginacaoEstoque(any(), any()))
+                .thenReturn(estoqueEntities);
+
+        when(grupoService.findById(any()))
+                .thenReturn(GrupoFactory.getGrupoOutput());
+
+        when(pecaRepository.findById(any()))
+                .thenReturn(Optional.of(PecaFactory.getPecaEntity()));
+
+
+        PageOutput<PecaOutput> result = pecaService.listaAllByReferencia(pagina, tamanho, sort, order, "Bucha");
+
+        assertEquals(estoqueEntities.getTotalPages(), result.getTotalPages());
+
     }
 
 }

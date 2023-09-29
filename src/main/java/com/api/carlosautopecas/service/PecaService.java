@@ -220,7 +220,6 @@ public class PecaService {
     }
 
     public PecaOutput findById(Long codigoPeca) throws RegraDeNegocioException {
-        int idEstoque = codigoPeca.intValue();
         PecaEntity peca = pecaRepository.findById(codigoPeca)
                 .orElseThrow(() -> new RegraDeNegocioException("Peça não encontrada!"));
 
