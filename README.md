@@ -16,7 +16,7 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 * Utilizando Postman ou outra ferramenta os endpoints e corpos de requisição são os seguintes:
   Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
 
-> [POST] "/auth/register"
+| [POST] "/auth/register" |
 
 
  __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
