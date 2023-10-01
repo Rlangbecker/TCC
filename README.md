@@ -7,7 +7,24 @@ A Aplicação foi desenvolvida com o foco de poder consultar peças do estoque d
 * Clone este repositório.
 * Escolha a sua IDE de preferência ( Neste tutorial usarei referências para IntelliJ ).
 * Abra o projeto com o IntelliJ, e verifique se a "application.properties" ( src> main > resources > application.properties ) está configurado conforme [Application.properties](https://github.com/Rlangbecker/TCC/blob/main/src/main/resources/application.properties)
-ou no caso queira trocar a PORTA onde está rodando.
+ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade __server.port__ para o valor que deseja.
+
+## Testando a aplicação
+
+* Para utilizar o Swagger para testar e ler a documentação, acesse http://localhost:5000/swagger-ui/index.html. ( Caso tenha trocado a porta na etapa anterior, trocar a porta na URL)
+
+* Utilizando Postman ou outra ferramenta os endpoints e corpos de requisição são os seguintes:
+  Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
+
+__[POST] http://localhost:5000/auth/register__
+```json
+{
+  "login": "TCC_Admin",
+  "senha": "admin123",
+  "nome": "TCC - Administrador",
+  "role": "ROLE_ADMIN"
+}
+```
 
 ## Tecnolocias Utilizadas
 * __Java 17__
