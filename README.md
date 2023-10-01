@@ -16,8 +16,8 @@ ou no caso queira trocar a PORTA onde está rodando.
 
 * __Spring Boot__: é um framework em Java que simplifica o desenvolvimento de aplicações autônomas e robustas. Ele fornece configurações padrão e uma estrutura de projeto que facilita a criação de aplicativos Java de alta qualidade.
 
-* Spring Data JPA:  é uma parte do ecossistema Spring que simplifica a interação com bancos de dados relacionais usando Java Persistence API (JPA). Ele fornece um conjunto de abstrações que tornam mais fácil escrever consultas de banco de dados e operações CRUD.
+* __Spring Data JPA__:  é uma parte do ecossistema Spring que simplifica a interação com bancos de dados relacionais usando Java Persistence API (JPA). Ele fornece um conjunto de abstrações que tornam mais fácil escrever consultas de banco de dados e operações CRUD.
 
-* Spring Security: é um módulo do Spring que fornece recursos de segurança para autenticação e autorização em aplicações Java. Ele ajuda a proteger as aplicações contra ameaças comuns, como acesso não autorizado.
+* __Spring Security__: é um módulo do Spring que fornece recursos de segurança para autenticação e autorização em aplicações Java. Ele ajuda a proteger as aplicações contra ameaças comuns, como acesso não autorizado.
 
-* Json Web Tokens: é um padrão aberto para representar informações seguras entre duas partes como um objeto JSON. É frequentemente usado para autenticação e troca segura de informações entre sistemas.
+* __Json Web Tokens__: é um padrão aberto para representar informações seguras entre duas partes como um objeto JSON. É frequentemente usado para autenticação e troca segura de informações entre sistemas.
