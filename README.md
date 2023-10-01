@@ -42,88 +42,41 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 
 [GET] "/pecas"
 Retornará a lista de peças existentes no banco de forma paginada.
-Ex:
-```json
-{
-"totalElementos": 14669,
-"quantidadePaginas": 1467,
-"pagina": 0,
-"tamanho": 10,
-"elementos": [
-{
-"codigoPeca": 1,
-"grupo": "CILINDRO PORTA",
-"descricao": "CILINDRO PORTA MALAS C/CH MZ 89/",
-"precoVenda": 35,
-"precoCusto": 21.2975,
-"dataCadastro": "2013-01-24",
-"ultimaVenda": "2014-11-22",
-"ultimoFornecedor": {
-"nome": "UNIVERSAL MAÇAN E FERRAGENS LTDA",
-"nomeFantasia": null,
-"cnpj": "48.521.181/0001-28"
-},
-"estoqueEntity": {
-"idIdentificador": 1,
-"casaPeca": "U-73",
-"referenciaPeca": "40307",
-"quantidadePeca": 1,
-"ncm": null,
-"csosn": "500"
-},
-{
-"codigoPeca": 1001,
-"grupo": "BUCHAS",
-"descricao": "BUCHA BALANÇA DIANT AXIOS GOL VOY PAR SAV ...94/",
-"precoVenda": 25,
-"precoCusto": 13.79,
-"dataCadastro": "2013-01-24",
-"ultimaVenda": "2023-05-02",
-"ultimoFornecedor": {
-"nome": "COMDIP COMERCIAL DISTRIBUIDORA DE PEÇAS LTDA",
-"nomeFantasia": "COMDIP",
-"cnpj": "68.647.312/0008-00"
-},
-"estoqueEntity": {
-"idIdentificador": 1001,
-"casaPeca": "W4-2",
-"referenciaPeca": "011.0502/811407",
-"quantidadePeca": -36,
-"ncm": "40169990",
-"csosn": "500"
-}
-]
-}
 
-```
 
 [GET] "/pecas/codigo/1001"
 Retornará a peça pelo seu código.
-Ex:
+
+[GET] "/pecas/descricao/bucha"
+Retornará uma lista de peças que contenham a palavra "bucha".
+
+[GET] "/pecas/referencia/40307"
+Retornará uma lista de peças que contenham a referencia "40307".
+
+[GET] "/user"
+Retornará a lista de usuarios existentes no banco.
+
+[GET] "/user/ricardo"
+Retornará as informações do usuario com o login "ricardo".
+
+[GET] "/user/change-password"
 ```json
 {
-"codigoPeca": 1001,
-"grupo": "BUCHAS",
-"descricao": "BUCHA BALANÇA DIANT AXIOS GOL VOY PAR SAV ...94/",
-"precoVenda": 25,
-"precoCusto": 13.79,
-"dataCadastro": "2013-01-24",
-"ultimaVenda": "2023-05-02",
-"ultimoFornecedor": {
-"nome": "COMDIP COMERCIAL DISTRIBUIDORA DE PEÇAS LTDA",
-"nomeFantasia": "COMDIP",
-"cnpj": "68.647.312/0008-00"
-},
-"estoqueEntity": {
-"idIdentificador": 1001,
-"casaPeca": "W4-2",
-"referenciaPeca": "011.0502/811407",
-"quantidadePeca": -36,
-"ncm": "40169990",
-"csosn": "500"
+  "login": "ricardo",
+  "senha": "123456",
+  "novaSenha": "123456NovaSenha"
 }
-
 ```
+
+[GET] "/user/change-password-from-user"
+```json
+{
+  "login": "ricardo",
+  "senha": "NovaSenha"
+}
+```
+
+
 
 
 
