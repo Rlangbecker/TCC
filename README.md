@@ -19,7 +19,7 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 __[POST] "/auth/register"__
 
 
-* __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
+ __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
 ```json
 {
   "login": "Ricardo",
