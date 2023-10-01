@@ -17,6 +17,8 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
   Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
 
 __[POST] "/auth/register"__
+
+
 **__ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
 ```json
 {
