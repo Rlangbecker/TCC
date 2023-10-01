@@ -70,8 +70,59 @@ Ex:
 "quantidadePeca": 1,
 "ncm": null,
 "csosn": "500"
+},
+{
+"codigoPeca": 1001,
+"grupo": "BUCHAS",
+"descricao": "BUCHA BALANÇA DIANT AXIOS GOL VOY PAR SAV ...94/",
+"precoVenda": 25,
+"precoCusto": 13.79,
+"dataCadastro": "2013-01-24",
+"ultimaVenda": "2023-05-02",
+"ultimoFornecedor": {
+"nome": "COMDIP COMERCIAL DISTRIBUIDORA DE PEÇAS LTDA",
+"nomeFantasia": "COMDIP",
+"cnpj": "68.647.312/0008-00"
+},
+"estoqueEntity": {
+"idIdentificador": 1001,
+"casaPeca": "W4-2",
+"referenciaPeca": "011.0502/811407",
+"quantidadePeca": -36,
+"ncm": "40169990",
+"csosn": "500"
 }
-}]
+]
+}
+
+```
+
+[GET] "/pecas/codigo/1001"
+Retornará a peça pelo seu código.
+Ex:
+```json
+{
+"codigoPeca": 1001,
+"grupo": "BUCHAS",
+"descricao": "BUCHA BALANÇA DIANT AXIOS GOL VOY PAR SAV ...94/",
+"precoVenda": 25,
+"precoCusto": 13.79,
+"dataCadastro": "2013-01-24",
+"ultimaVenda": "2023-05-02",
+"ultimoFornecedor": {
+"nome": "COMDIP COMERCIAL DISTRIBUIDORA DE PEÇAS LTDA",
+"nomeFantasia": "COMDIP",
+"cnpj": "68.647.312/0008-00"
+},
+"estoqueEntity": {
+"idIdentificador": 1001,
+"casaPeca": "W4-2",
+"referenciaPeca": "011.0502/811407",
+"quantidadePeca": -36,
+"ncm": "40169990",
+"csosn": "500"
+}
+}
 
 ```
 
