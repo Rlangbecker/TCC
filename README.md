@@ -18,6 +18,11 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 
 |[POST] "/auth/register"|
 
+# |**Há 10 tipos de pessoas no mundo...**|
+# |:-----------------------------------------:|
+# |1. As que sabem contar em binário|
+# |10. E as que não sabem contar em binário|
+
 
  __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
 ```json
