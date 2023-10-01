@@ -10,11 +10,11 @@ A Aplicação foi desenvolvida com o foco de poder consultar peças do estoque d
 ou no caso queira trocar a PORTA onde está rodando.
 
 ## Tecnolocias Utilizadas
-* Java 17
+* __Java 17__
   
-* Maven: é uma poderosa ferramenta de gerenciamento de construção e automação de projetos amplamente utilizada na indústria de desenvolvimento de software. Ele permite que os desenvolvedores definam, construam, testem e gerenciem projetos de software Java (e outras linguagens) de maneira eficiente e padronizada.
+* __Maven__: é uma poderosa ferramenta de gerenciamento de construção e automação de projetos amplamente utilizada na indústria de desenvolvimento de software. Ele permite que os desenvolvedores definam, construam, testem e gerenciem projetos de software Java (e outras linguagens) de maneira eficiente e padronizada.
 
-* Spring Boot: é um framework em Java que simplifica o desenvolvimento de aplicações autônomas e robustas. Ele fornece configurações padrão e uma estrutura de projeto que facilita a criação de aplicativos Java de alta qualidade.
+* __Spring Boot__: é um framework em Java que simplifica o desenvolvimento de aplicações autônomas e robustas. Ele fornece configurações padrão e uma estrutura de projeto que facilita a criação de aplicativos Java de alta qualidade.
 
 * Spring Data JPA:  é uma parte do ecossistema Spring que simplifica a interação com bancos de dados relacionais usando Java Persistence API (JPA). Ele fornece um conjunto de abstrações que tornam mais fácil escrever consultas de banco de dados e operações CRUD.
 
