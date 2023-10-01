@@ -39,9 +39,39 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 }
 ```
 
-```
+
 [GET] "/pecas"
-> Retornará a lista de peças existentes no banco de forma paginada.
+Retornará a lista de peças existentes no banco de forma paginada.
+Ex:
+```json
+{
+"totalElementos": 14669,
+"quantidadePaginas": 1467,
+"pagina": 0,
+"tamanho": 10,
+"elementos": [
+{
+"codigoPeca": 1,
+"grupo": "CILINDRO PORTA",
+"descricao": "CILINDRO PORTA MALAS C/CH MZ 89/",
+"precoVenda": 35,
+"precoCusto": 21.2975,
+"dataCadastro": "2013-01-24",
+"ultimaVenda": "2014-11-22",
+"ultimoFornecedor": {
+"nome": "UNIVERSAL MAÇAN E FERRAGENS LTDA",
+"nomeFantasia": null,
+"cnpj": "48.521.181/0001-28"
+},
+"estoqueEntity": {
+"idIdentificador": 1,
+"casaPeca": "U-73",
+"referenciaPeca": "40307",
+"quantidadePeca": 1,
+"ncm": null,
+"csosn": "500"
+}
+}]
 
 ```
 
