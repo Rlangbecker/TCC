@@ -39,7 +39,8 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 }
 ```
 
-```[GET] "/pecas"
+```
+[GET] "/pecas"
 > Retornará a lista de peças existentes no banco de forma paginada.
 
 ```
