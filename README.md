@@ -16,12 +16,13 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 * Utilizando Postman ou outra ferramenta os endpoints e corpos de requisição são os seguintes:
   Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
 
-__[POST] http://localhost:5000/auth/register__
+__[POST] "/auth/register"__
+**__ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
 ```json
 {
-  "login": "TCC_Admin",
-  "senha": "admin123",
-  "nome": "TCC - Administrador",
+  "login": "Ricardo",
+  "senha": "123456",
+  "nome": "Ricardo Langbecker",
   "role": "ROLE_ADMIN"
 }
 ```
