@@ -16,12 +16,7 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 * Utilizando Postman ou outra ferramenta os endpoints e corpos de requisição são os seguintes:
   Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
 
-|[POST] "/auth/register"|
-
-# |**Há 10 tipos de pessoas no mundo...**|
-# |:-----------------------------------------:|
-# |1. As que sabem contar em binário|
-# |10. E as que não sabem contar em binário|
+[POST] "/auth/register"
 
 
  __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
@@ -34,7 +29,7 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 }
 ```
 
-> [POST] "/auth/login"
+ [POST] "/auth/login"
 
 
 ```json
@@ -45,37 +40,37 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 ```
 
 
-> [GET] "/pecas"
+ [GET] "/pecas"
 Retornará a lista de peças existentes no banco de forma paginada.
 
 
 
-> [GET] "/pecas/codigo/1001"
+ [GET] "/pecas/codigo/1001"
 Retornará a peça pelo seu código.
 
 
 
-> [GET] "/pecas/descricao/bucha"
+ [GET] "/pecas/descricao/bucha"
 Retornará uma lista de peças que contenham a palavra "bucha".
 
 
 
-> [GET] "/pecas/referencia/40307"
+ [GET] "/pecas/referencia/40307"
 Retornará uma lista de peças que contenham a referencia "40307".
 
 
 
-> [GET] "/user"
+ [GET] "/user"
 Retornará a lista de usuarios existentes no banco.
 
 
 
-> [GET] "/user/ricardo"
+ [GET] "/user/ricardo"
 Retornará as informações do usuario com o login "ricardo".
 
 
 
-> [GET] "/user/change-password"
+ [GET] "/user/change-password"
 ```json
 {
   "login": "ricardo",
@@ -84,7 +79,7 @@ Retornará as informações do usuario com o login "ricardo".
 }
 ```
 
-> [GET] "/user/change-password-from-user"
+ [GET] "/user/change-password-from-user"
 ```json
 {
   "login": "ricardo",
