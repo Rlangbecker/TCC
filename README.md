@@ -16,18 +16,35 @@ ou no caso queira trocar a PORTA onde está rodando, basta alterar a propriedade
 * Utilizando Postman ou outra ferramenta os endpoints e corpos de requisição são os seguintes:
   Obs: Lembre-se de trocar a porta caso tenha alterado no applications.properties.
 
-<p style="color:green">[POST]</p> "/auth/register"
+[POST] "/auth/register"
 
 
  __ROLE__ pode ser composta por dois tipos: ROLE_ADMIN ou ROLE_ATENDENTE
 ```json
 {
-  "login": "Ricardo",
+  "login": "ricardo",
   "senha": "123456",
   "nome": "Ricardo Langbecker",
   "role": "ROLE_ADMIN"
 }
 ```
+
+[POST] "/auth/login"
+
+
+```json
+{
+    "login":"Ricardo",
+    "senha":"123456"
+}
+```
+
+[GET] "/pecas"
+
+```
+Retornará a lista de peças existentes no banco de forma paginada.
+```
+
 
 ## Tecnolocias Utilizadas
 * __Java 17__
